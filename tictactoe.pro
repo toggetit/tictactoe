@@ -10,8 +10,12 @@
 #	Makefile, т.к. по-умолчанию креатор ставит пробелы вместо табов, а make
 #	этого не любит
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    gamecore.cpp
 
 OTHER_FILES += Makefile \
     .gitignore
+
+HEADERS += \
+    gamecore.h
 

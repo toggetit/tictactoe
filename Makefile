@@ -1,2 +1,2 @@
-game: main.cpp
-	g++ -o game -lSDL -lSDL_image main.cpp
+all: main.cpp
+	g++ -o tictactoe -lSDL -lSDL_image main.cpp

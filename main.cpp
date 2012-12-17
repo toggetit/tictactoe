@@ -6,7 +6,7 @@
 using namespace std;
 
 SDL_Surface* screen;
-SDL_Surface* board, *x, *o;
+SDL_Surface* board;
 
 SDL_Surface *load_image( std::string filename )
 {
@@ -40,12 +40,6 @@ bool loadResources()
     board = load_image("board.jpg");
     if (board == NULL) return false;
 	
-    x = load_image("x.jpg");
-    if (x == NULL) return false;
-	
-    o = load_image("o.jpg");
-    if (o == NULL) return false;
-
     return true;
 
 }
@@ -65,7 +59,7 @@ int main(int argc, char** argv)
 	}
 
 
-
+    SDL_Delay(2000);
 
 
     return(EXIT_SUCCESS);

@@ -7,6 +7,7 @@ class Board
 {
 public:
     Board();
+    SDL_Surface* getBoardPic();
 };
 
 #endif // BOARD_H

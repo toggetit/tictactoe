@@ -11,11 +11,13 @@
 #	этого не любит
 
 SOURCES += main.cpp \
-    gamecore.cpp
+    gamecore.cpp \
+    board.cpp
 
 OTHER_FILES += Makefile \
     .gitignore
 
 HEADERS += \
-    gamecore.h
+    gamecore.h \
+    board.h
 

@@ -21,6 +21,7 @@ public:
     SDL_Surface* getBoard() const;
     bool loadResources();
     void clearBoard();
+    bool checkForWin();
 
 private:
     //Области X и O на исходной картинке

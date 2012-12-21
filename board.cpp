@@ -37,6 +37,8 @@ Board::Board()
 
     board = SDL_CreateRGBSurface(SDL_SWSURFACE,380,380,24,0,0,0,0);
 
+    clearBoard();
+
     SDL_BlitSurface(source, &playArea, board, NULL);
 
 }
@@ -77,13 +79,6 @@ bool Board::loadResources()
     playArea.w = 380;
     playArea.h = 380;
 
-    for(int i = 0; i < 3; i++)
-    {
-        for(int j = 0; j < 3; j++)
-        {
-            matrix[i][j] = '-';
-        }
-    }
 
     return true;
 }
@@ -91,6 +86,18 @@ bool Board::loadResources()
 SDL_Surface* Board::getBoard() const
 {
     return board;
+}
+
+void Board::clearBoard()
+{
+    for(int i = 0; i < 3; i++)
+    {
+        for(int j = 0; j < 3; j++)
+        {
+            matrix[i][j] = '-';
+        }
+    }
+    repaint();
 }
 
 bool Board::turn(char sign, uint x, uint y)
@@ -134,6 +141,11 @@ void Board::repaint()
             SDL_BlitSurface(source, &temp, board, &destTemp);
         }
     }
+}
+
+bool Board::checkForWin()
+{
+
 }
 
 /*Шаблон проверки на победу

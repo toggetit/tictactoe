@@ -145,7 +145,17 @@ void Board::repaint()
 
 bool Board::checkForWin()
 {
+    //Проверка горизонталей/вертикалей
+    for(uint i = 0; i < 3; i++)
+    {
+        if ((matrix[i][0] == matrix[i][1] == matrix[i][2]) != '-') return matrix[i][0];
+        if ((matrix[0][i] == matrix[1][i] == matrix[2][i]) != '-') return matrix[0][i];
+    }
+    //Диагонали
+    if ((matrix[0][0] == matrix[1][1] == matrix[2][2]) != '-') return matrix[1][1];
+    if ((matrix[2][0] == matrix[1][1] == matrix[0][2]) != '-') return matrix[1][1];
 
+    //Сделать проверку на ничью (в главном цикле сделать всего девять ходов
 }
 
 /*Шаблон проверки на победу

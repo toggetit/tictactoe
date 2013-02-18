@@ -7,7 +7,7 @@
 #include <assert.h>
 
 //Смещение в пикселях для отрисовки значков
-#define DELTA 115
+#define DELTA 140
 #define DELTA_X 115
 #define DELTA_Y 120
 

@@ -116,12 +116,17 @@ bool Board::turn(char sign, uint x, uint y)
 
 void Board::repaint()
 {
+
     SDL_Rect temp, destTemp;
+
 
     for(int i = 0; i < 3; i++)
     {
         for(int j = 0; j < 3; j++)
         {
+            //
+
+
             switch(matrix[i][j])
             {
             case 'x':
@@ -134,11 +139,20 @@ void Board::repaint()
                 temp = empty;
             }
 
-            //Смещение точки отрисовки на нужную ячейку (от первой клетки)
-            destTemp.x = 35 + DELTA*i;
-            destTemp.y = 25 + DELTA*j;
+            //Начальный сдвиг
+            destTemp.x = 25;
+            destTemp.y = 25;
+
+            //Смещение точки отрисовки на нужную ячейку (от нулевой клетки)
+            //минус некая межклеточная величина
+            destTemp.x += 10*i - i*20;
+
+            destTemp.y += DELTA*j - j*15;
+            //destTemp.y += 20;
+
 
             SDL_BlitSurface(source, &temp, board, &destTemp);
+
         }
     }
 }

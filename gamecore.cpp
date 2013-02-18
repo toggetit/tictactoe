@@ -20,9 +20,10 @@ GameCore::GameCore()
     SDL_BlitSurface(board->getBoard(), NULL, screen, NULL);
     SDL_Flip(screen);
     SDL_Delay(1000);
-    board->turn('x', 0, 0);
+    //std::cout<<0<<" "<<2;
+    board->turn('x', 0, 2);
     SDL_BlitSurface(board->getBoard(), NULL, screen, NULL);
     SDL_Flip(screen);
-    SDL_Delay(5000);
+    SDL_Delay(3000);
 }
 

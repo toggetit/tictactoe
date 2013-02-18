@@ -1,5 +1,6 @@
 #ifndef GAMECORE_H
 #define GAMECORE_H
+
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 #include <string>

@@ -1,5 +1,5 @@
 all: main.o gamecore.o board.o
-	g++ -o tictactoe -lSDL -lSDL_image main.o gamecore.o board.o
+	g++ -o tictactoe main.o gamecore.o board.o -lSDL -lSDL_image
 
 main.o: main.cpp
 	g++ -c -o main.o main.cpp

@@ -21,9 +21,20 @@ GameCore::GameCore()
     SDL_Flip(screen);
     SDL_Delay(1000);
     //std::cout<<0<<" "<<2;
-    board->turn('x', 0, 2);
-    SDL_BlitSurface(board->getBoard(), NULL, screen, NULL);
-    SDL_Flip(screen);
-    SDL_Delay(3000);
+//    board->turn('x', 1, 1);
+//    SDL_BlitSurface(board->getBoard(), NULL, screen, NULL);
+//    SDL_Flip(screen);
+//    SDL_Delay(3000);
+    SDL_Event event;
+
+    while(event.type != SDL_QUIT)
+    {
+        SDL_PollEvent(&event);
+
+        if(event.type == SDL_MOUSEBUTTONDOWN)
+        {
+            std::cout<<event.button.x;
+        }
+    }
 }
 

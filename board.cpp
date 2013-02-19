@@ -145,8 +145,7 @@ void Board::repaint()
 
             //Смещение точки отрисовки на нужную ячейку (от нулевой клетки)
             //минус некая межклеточная величина
-            destTemp.x += 10*i - i*20;
-
+            destTemp.x += DELTA*i - i*10;
             destTemp.y += DELTA*j - j*15;
             //destTemp.y += 20;
 

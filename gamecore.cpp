@@ -36,5 +36,36 @@ GameCore::GameCore()
             std::cout<<event.button.x;
         }
     }
+//    int main(int argc, char* args[])
+//    {
+//        // Initialize the game
+//        InitGame();
+
+//        // Load the game resources
+//        LoadGame();
+
+//        // Game Loop
+//        while ( gamedata.game_loop )    // This is a bool set to true until exit
+//        {
+
+
+//            // Grab the latest event in the event-queue
+//            SDL_PollEvent(&gamedata.sdl_event);
+
+//            // Update the game each frame
+//            UpdateGame();    // This runs game-logic
+
+//            // Render the game each frame
+//            RenderGame();    // Effectively this calls an SDL_Flip() to update the screen
+
+
+//        }
+
+//        // Unload resources
+//        UnloadGame();
+
+//        // Exit program
+//        return 0;
+//    }
 }
 

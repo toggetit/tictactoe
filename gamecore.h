@@ -12,12 +12,18 @@ class GameCore
 public:
     //Инициализировать игровой класс
     GameCore();
-
+    ~GameCore();
+    SDL_Event event;
+    bool isRunning() const {return gameLoop;}
+    void updateGame();
 
 private:
-
+    bool gameLoop;
     SDL_Surface* screen;
-
+    Board *board;
+    //Вот тут потестим
+    bool xTurn;
+    uint turns;
 
 };
 

@@ -2,7 +2,7 @@
 
 GameCore::GameCore()
 {
-    atexit(SDL_Quit);
+    //atexit(SDL_Quit);
 
     SDL_Init(SDL_INIT_VIDEO);
 
@@ -14,28 +14,30 @@ GameCore::GameCore()
         exit(EXIT_FAILURE);
     }
 
-    Board* board = new Board();
+    board = new Board();
 
 
     SDL_BlitSurface(board->getBoard(), NULL, screen, NULL);
     SDL_Flip(screen);
-    SDL_Delay(1000);
+
+    gameLoop = true;
+    //SDL_Delay(1000);
     //std::cout<<0<<" "<<2;
 //    board->turn('x', 1, 1);
 //    SDL_BlitSurface(board->getBoard(), NULL, screen, NULL);
 //    SDL_Flip(screen);
 //    SDL_Delay(3000);
-    SDL_Event event;
+    //SDL_Event event;
 
-    while(event.type != SDL_QUIT)
-    {
-        SDL_PollEvent(&event);
+//    while(event.type != SDL_QUIT)
+//    {
+//        SDL_WaitEvent(&event);
 
-        if(event.type == SDL_MOUSEBUTTONDOWN)
-        {
-            std::cout<<event.button.x;
-        }
-    }
+//        if(event.type == SDL_MOUSEBUTTONDOWN)
+//        {
+//            std::cout<<event.button.x;
+//        }
+//    }
 //    int main(int argc, char* args[])
 //    {
 //        // Initialize the game
@@ -69,3 +71,34 @@ GameCore::GameCore()
 //    }
 }
 
+void GameCore::updateGame()
+{
+    switch(event.type)
+    {
+        case SDL_QUIT:
+            gameLoop = false;
+            break;
+
+        case SDL_MOUSEBUTTONDOWN:
+            if (turns > 8)
+            {
+                if(xTurn)
+                {
+
+                }
+                else
+                {
+
+                }
+                board->checkForWin();
+            }
+            //Тут самое основное
+            break;
+    }
+}
+
+GameCore::~GameCore()
+{
+    delete board;
+    SDL_Quit();
+}

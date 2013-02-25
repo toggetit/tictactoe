@@ -21,7 +21,8 @@ public:
     SDL_Surface* getBoard() const;
     bool loadResources();
     void clearBoard();
-    bool checkForWin();
+    bool checkForWin() const;
+    bool isCoordsValid(uint x, uint y) const;
 
 private:
     //Области X и O на исходной картинке

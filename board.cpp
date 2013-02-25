@@ -156,7 +156,7 @@ void Board::repaint()
     }
 }
 
-bool Board::checkForWin()
+bool Board::checkForWin() const
 {
     //Проверка горизонталей/вертикалей
     for(uint i = 0; i < 3; i++)
@@ -169,6 +169,11 @@ bool Board::checkForWin()
     if ((matrix[2][0] == matrix[1][1] == matrix[0][2]) != '-') return matrix[1][1];
 
     //Сделать проверку на ничью (в главном цикле сделать всего девять ходов
+}
+
+bool Board::isCoordsValid(uint x, uint y) const
+{
+    if(x > 10)
 }
 
 /*Шаблон проверки на победу

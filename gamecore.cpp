@@ -21,6 +21,8 @@ GameCore::GameCore()
     SDL_Flip(screen);
 
     gameLoop = true;
+    xTurn = true;
+    turns = 0;
     //SDL_Delay(1000);
     //std::cout<<0<<" "<<2;
 //    board->turn('x', 1, 1);

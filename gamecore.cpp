@@ -17,12 +17,11 @@ GameCore::GameCore()
     board = new Board();
 
 
-    SDL_BlitSurface(board->getBoard(), NULL, screen, NULL);
-    SDL_Flip(screen);
-
     gameLoop = true;
     xTurn = true;
     turns = 0;
+
+    renderGame();
     //SDL_Delay(1000);
     //std::cout<<0<<" "<<2;
 //    board->turn('x', 1, 1);
@@ -82,21 +81,31 @@ void GameCore::updateGame()
             break;
 
         case SDL_MOUSEBUTTONDOWN:
-            if (turns > 8)
+            if (turns++ < 8)
             {
                 if(xTurn)
                 {
-
+                    board->turn('x', 0, 0);
                 }
                 else
                 {
-
+                    board->turn('o', 1, 0);
                 }
                 board->checkForWin();
+                xTurn = !xTurn;
+
             }
             //Тут самое основное
+
             break;
     }
+
+}
+
+void GameCore::renderGame()
+{
+    SDL_BlitSurface(board->getBoard(), NULL, screen, NULL);
+    SDL_Flip(screen);
 }
 
 GameCore::~GameCore()

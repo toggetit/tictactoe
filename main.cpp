@@ -10,6 +10,8 @@ int main(int argc, char** argv)
         SDL_WaitEvent(&core->event);
 
         core->updateGame();
+
+        core->renderGame();
     }
 
     delete core;

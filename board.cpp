@@ -173,7 +173,7 @@ bool Board::checkForWin() const
 
 bool Board::isCoordsValid(uint x, uint y) const
 {
-    if(x > 10)
+    //if(x > 10)
 }
 
 /*Шаблон проверки на победу

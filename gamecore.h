@@ -16,6 +16,7 @@ public:
     SDL_Event event;
     bool isRunning() const {return gameLoop;}
     void updateGame();
+    void renderGame();
 
 private:
     bool gameLoop;

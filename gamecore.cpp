@@ -17,6 +17,9 @@ GameCore::GameCore()
     board = new Board();
 
 
+    x = 0;
+    y = 0;
+
     gameLoop = true;
     xTurn = true;
     turns = 0;
@@ -74,6 +77,12 @@ GameCore::GameCore()
 
 void GameCore::updateGame()
 {
+    if (turns == 0)
+    {
+        board->clearBoard();
+        xTurn = true;
+    }
+
     switch(event.type)
     {
         case SDL_QUIT:
@@ -81,26 +90,68 @@ void GameCore::updateGame()
             break;
 
         case SDL_MOUSEBUTTONDOWN:
-            if (turns++ < 8)
+            if (turns < 9)
             {
+                cursorCatch(&x, &y);
                 if(xTurn)
                 {
-                    board->turn('x', 0, 0);
+                    if(board->turn('x', x, y)) turns++;
                 }
                 else
                 {
-                    board->turn('o', 1, 0);
+                    if(board->turn('o', x, y)) turns++;
                 }
-                board->checkForWin();
+                if(board->checkForWin())
+                {
+
+                    if(xTurn)board->fillBoard('x');
+                    else board->fillBoard('o');
+                    SDL_Delay(1000);
+                    turns = 0;
+                }
                 xTurn = !xTurn;
 
             }
-            //Тут самое основное
+            else
+            {
 
+                turns = 0;
+            }
             break;
     }
 
 }
+
+void GameCore::cursorCatch(uint* x, uint* y)
+{
+//    if(event.motion.x > 10)
+//    {
+//        *x = 0;
+//        if(event.motion.x > 125)
+//        {
+//            *x = 1;
+//            if(event.motion.x > 245)
+//            {
+//                *x = 2;
+//            }
+//        }
+//    }
+//    if(event.motion.y > 10)
+//    {
+//        *x = 0;
+//        if(event.motion.y > 125)
+//        {
+//            *x = 1;
+//            if(event.motion.y > 245)
+//            {
+//                *x = 2;
+//            }
+//        }
+//    }
+    *x = event.motion.x / 130;
+    *y = event.motion.y / 130;
+}
+
 
 void GameCore::renderGame()
 {

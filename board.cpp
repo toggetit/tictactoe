@@ -158,22 +158,32 @@ void Board::repaint()
 
 bool Board::checkForWin() const
 {
-    //Проверка горизонталей/вертикалей
-    for(uint i = 0; i < 3; i++)
-    {
-        if ((matrix[i][0] == matrix[i][1] == matrix[i][2]) != '-') return matrix[i][0];
-        if ((matrix[0][i] == matrix[1][i] == matrix[2][i]) != '-') return matrix[0][i];
-    }
-    //Диагонали
-    if ((matrix[0][0] == matrix[1][1] == matrix[2][2]) != '-') return matrix[1][1];
-    if ((matrix[2][0] == matrix[1][1] == matrix[0][2]) != '-') return matrix[1][1];
 
+    //Проверка горизонталей/вертикалей
+//    for(uint i = 0; i < 3; i++)
+//    {
+//        if (((matrix[i][0] == matrix[i][1]) == matrix[i][2])) return true;
+//        if ((matrix[0][i] == matrix[1][i] == matrix[2][i]) == 'x') return true;
+//    }
+//    //Диагонали
+//    if ((matrix[0][0] == matrix[1][1] == matrix[2][2]) == 'x') return true;
+//    if ((matrix[2][0] == matrix[1][1] == matrix[0][2]) == 'x') return true;
+
+    return false;
     //Сделать проверку на ничью (в главном цикле сделать всего девять ходов
 }
 
-bool Board::isCoordsValid(uint x, uint y) const
+void Board::fillBoard(char sign)
 {
-    //if(x > 10)
+    clearBoard();
+    for(int i = 0; i < 3; i++)
+    {
+        for(int j = 0; j < 3; j++)
+        {
+            matrix[i][j] = sign;
+        }
+    }
+    repaint();
 }
 
 /*Шаблон проверки на победу

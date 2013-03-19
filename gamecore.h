@@ -26,6 +26,10 @@ private:
     bool xTurn;
     uint turns;
 
+    void cursorCatch(uint*, uint*);
+    //Временное решение - индекс клетки при нажатии курсором
+    uint x, y;
+
 };
 
 #endif // GAMECORE_H

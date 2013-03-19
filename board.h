@@ -22,7 +22,8 @@ public:
     bool loadResources();
     void clearBoard();
     bool checkForWin() const;
-    bool isCoordsValid(uint x, uint y) const;
+    void fillBoard(char);
+
 
 private:
     //Области X и O на исходной картинке

@@ -103,14 +103,19 @@ void GameCore::updateGame()
                 }
                 if(board->checkForWin())
                 {
-
-                    if(xTurn)board->fillBoard('x');
-                    else board->fillBoard('o');
+                    if(xTurn)
+                    {
+                        board->fillBoard('x');
+                    }
+                    else
+                    {
+                        board->fillBoard('o');
+                    }
+                    renderGame();
                     SDL_Delay(1000);
                     turns = 0;
                 }
                 xTurn = !xTurn;
-
             }
             else
             {

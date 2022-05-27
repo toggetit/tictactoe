@@ -79,7 +79,7 @@ void Board::clearBoard() {
 
     for(int j = 0; j < 3; j++) {
 
-      matrix[i][j] = '-';
+      matrix[i][j] = '\0';
     }
   }
 
@@ -91,7 +91,7 @@ bool Board::turn(char sign, uint x, uint y)
   assert(x < 3);
   assert(y < 3);
 
-  if(matrix[x][y] == '-') {
+  if(matrix[x][y] == '\0') {
 
     matrix[x][y] = sign;
     repaint();
@@ -141,34 +141,15 @@ void Board::repaint() {
 
 bool Board::checkForWin() const {
 
-    //Проверка горизонталей/вертикалей
-//    for(uint i = 0; i < 3;)
-//    {
-//        if (matrix[i][0] == 'x' && matrix[i][1] == 'x' && matrix[i][2] == 'x') return true;
-//        if (matrix[i][0] == 'o' && matrix[i][1] == 'o' && matrix[i][2] == 'o') return true;
-//        if (matrix[0][i] == 'x' && matrix[1][i] == 'x' && matrix[2][1] == 'x') return true;
-//        if (matrix[0][i] == 'o' && matrix[1][i] == 'o' && matrix[2][1] == 'o') return true;
-//        i++;
-//    }
-  //
-  if (matrix[0][0] == 'x' && matrix[0][1] == 'x' && matrix[0][2] == 'x') return true;
-  if (matrix[1][0] == 'x' && matrix[1][1] == 'x' && matrix[1][2] == 'x') return true;
-  if (matrix[2][0] == 'x' && matrix[2][1] == 'x' && matrix[2][2] == 'x') return true;
-  if (matrix[0][0] == 'x' && matrix[1][0] == 'x' && matrix[2][0] == 'x') return true;
-  if (matrix[0][1] == 'x' && matrix[1][1] == 'x' && matrix[2][1] == 'x') return true;
-  if (matrix[0][2] == 'x' && matrix[1][2] == 'x' && matrix[2][2] == 'x') return true;
-
-  if (matrix[0][0] == 'o' && matrix[0][1] == 'o' && matrix[0][2] == 'o') return true;
-  if (matrix[1][0] == 'o' && matrix[1][1] == 'o' && matrix[1][2] == 'o') return true;
-  if (matrix[2][0] == 'o' && matrix[2][1] == 'o' && matrix[2][2] == 'o') return true;
-  if (matrix[0][0] == 'o' && matrix[1][0] == 'o' && matrix[2][0] == 'o') return true;
-  if (matrix[0][1] == 'o' && matrix[1][1] == 'o' && matrix[2][1] == 'o') return true;
-  if (matrix[0][2] == 'o' && matrix[1][2] == 'o' && matrix[2][2] == 'o') return true;
-  //Диагонали
-  if (matrix[0][0] == 'x' && matrix[1][1] == 'x' && matrix[2][2] == 'x') return true;
-  if (matrix[0][0] == 'o' && matrix[1][1] == 'o' && matrix[2][2] == 'o') return true;
-  if (matrix[2][0] == 'x' && matrix[1][1] == 'x' && matrix[0][2] == 'x') return true;
-  if (matrix[2][0] == 'o' && matrix[1][1] == 'o' && matrix[0][2] == 'o') return true;
+  // Rows/columns
+  for(uint i = 0; i < 3;) {
+    if (matrix[i][0] == matrix[i][1] && matrix[i][1] == matrix[i][2] && matrix[i][2] != '\0') return true;
+    if (matrix[0][i] == matrix[1][i] && matrix[1][i] == matrix[2][i] && matrix[2][i] != '\0') return true;
+    i++;
+  }
+  // Diagonals
+  if (matrix[0][0] == matrix[1][1] && matrix[1][1] == matrix[2][2] && matrix[2][2] != '\0') return true;
+  if (matrix[2][0] == matrix[1][1] && matrix[1][1] == matrix[0][2] && matrix[0][2] != '\0') return true;
 
   return false;
   //Сделать проверку на ничью (в главном цикле сделать всего девять ходов

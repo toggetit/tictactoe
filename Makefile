@@ -1,14 +1,20 @@
-all: main.o gamecore.o board.o
-	g++ -o tictactoe main.o gamecore.o board.o -lSDL -lSDL_image
+CC = g++
+SRCDIR = src
+OBJDIR = bin
 
-main.o: main.cpp
-	g++ -c -o main.o main.cpp
+all: tictactoe
 
-gamecore.o: gamecore.h gamecore.cpp
-	g++ -c -o gamecore.o gamecore.cpp
+tictactoe: main.o gamecore.o board.o
+	$(CC) $(OBJDIR)/main.o $(OBJDIR)/gamecore.o $(OBJDIR)/board.o -lSDL2 -lSDL2_image -o tictactoe
 
-board.o: board.h board.cpp
-	g++ -c -o board.o board.cpp
+main.o: $(SRCDIR)/main.cpp
+	$(CC) -c $(SRCDIR)/main.cpp -o $(OBJDIR)/main.o
+
+gamecore.o: $(SRCDIR)/gamecore.hpp $(SRCDIR)/gamecore.cpp
+	$(CC) -c $(SRCDIR)/gamecore.cpp -o $(OBJDIR)/gamecore.o
+
+board.o: $(SRCDIR)/board.hpp $(SRCDIR)/board.cpp
+	$(CC) -c $(SRCDIR)/board.cpp -o $(OBJDIR)/board.o
 
 clean:
-	rm *.[oa] tictactoe
+	rm $(OBJDIR)/*.[oa] tictactoe

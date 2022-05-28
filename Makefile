@@ -4,7 +4,7 @@ OBJDIR = bin
 
 all: tictactoe
 
-tictactoe: main.o gamecore.o board.o
+tictactoe: $(OBJDIR)/main.o $(OBJDIR)/gamecore.o $(OBJDIR)/board.o
 	$(CC) $(OBJDIR)/main.o $(OBJDIR)/gamecore.o $(OBJDIR)/board.o -lSDL2 -lSDL2_image -o tictactoe
 
 main.o: $(SRCDIR)/main.cpp
@@ -18,3 +18,4 @@ board.o: $(SRCDIR)/board.hpp $(SRCDIR)/board.cpp
 
 clean:
 	rm $(OBJDIR)/*.[oa] tictactoe
+

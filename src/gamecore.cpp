@@ -10,9 +10,8 @@ GameCore::GameCore() {
     std::cout<<"Couldn't init screen: "<<SDL_GetError()<<std::endl;
     exit(EXIT_FAILURE);
   }
-  else {
-    screen = SDL_GetWindowSurface(window);
-  }
+
+  renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
   board = new Board();
 
@@ -90,15 +89,21 @@ void GameCore::cursorCatch(uint* x, uint* y) {
 }
 
 void GameCore::renderGame() {
-  SDL_BlitSurface(board->getBoard(), NULL, screen, NULL);
-  SDL_UpdateWindowSurface(window);
+  tex = SDL_CreateTextureFromSurface(renderer, board->getBoard());
+
+  SDL_RenderClear(renderer);
+  SDL_RenderCopy(renderer, tex, NULL, NULL);
+  SDL_RenderPresent(renderer);
 }
 
 GameCore::~GameCore() {
   delete board;
 
-  SDL_FreeSurface(screen);
-  screen = NULL;
+  SDL_DestroyTexture(tex);
+  tex = NULL;
+
+  SDL_DestroyRenderer(renderer);
+  renderer = NULL;
 
   SDL_DestroyWindow(window);
   window = NULL;

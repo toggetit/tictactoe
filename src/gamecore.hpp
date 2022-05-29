@@ -20,9 +20,9 @@ public:
 
 private:
   bool gameLoop;
-  SDL_Surface* screen;
+  SDL_Texture*  tex;
   SDL_Window* window;
-  // SDL_Renderer* renderer;
+  SDL_Renderer* renderer;
   Board *board;
   //Вот тут потестим
   bool xTurn;

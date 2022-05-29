@@ -19,7 +19,6 @@ public:
 
   bool turn(char sign, uint x, uint y);
   SDL_Surface* getBoard() const;
-  // SDL_Texture* getTexture() const;
 
   bool loadResources();
   void clearBoard();

@@ -28,7 +28,7 @@ SDL_Surface *load_image( std::string filename ) {
 
   if( loadedImage == NULL ) {
 
-    std::cout<<"Couldn't init screen: "<<SDL_GetError()<<std::endl;
+    SDL_Log("Unable to load image: %s", SDL_GetError());
     SDL_FreeSurface(loadedImage);
   }
 

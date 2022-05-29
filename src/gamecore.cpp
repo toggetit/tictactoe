@@ -2,16 +2,19 @@
 
 GameCore::GameCore() {
 
-  SDL_Init(SDL_INIT_VIDEO);
+  window = nullptr;
+  renderer = nullptr;
+  tex = nullptr;
 
-  window = SDL_CreateWindow("TicTacToe", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 380, 380, SDL_WINDOW_SHOWN);
-
-  if (window == NULL) {
-    std::cout<<"Couldn't init screen: "<<SDL_GetError()<<std::endl;
+  if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) != 0) {
+    SDL_Log("Unable to initialize SDL: %s", SDL_GetError());
     exit(EXIT_FAILURE);
   }
 
-  renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+  if (SDL_CreateWindowAndRenderer(380, 380, SDL_WINDOW_SHOWN, &window, &renderer)) {
+    SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create window and renderer: %s", SDL_GetError());
+    exit(EXIT_FAILURE);
+  }
 
   board = new Board();
 
@@ -29,7 +32,6 @@ void GameCore::updateGame() {
 
   if (turns == 0) {
     board->clearBoard();
-    xTurn = true;
   }
 
   switch(event.type) {
@@ -77,10 +79,7 @@ void GameCore::updateGame() {
 
       turns = 0;
     }
-
-    break;
   }
-
 }
 
 void GameCore::cursorCatch(uint* x, uint* y) {
@@ -97,16 +96,17 @@ void GameCore::renderGame() {
 }
 
 GameCore::~GameCore() {
+
   delete board;
 
   SDL_DestroyTexture(tex);
-  tex = NULL;
-
-  SDL_DestroyRenderer(renderer);
-  renderer = NULL;
+  tex = nullptr;
 
   SDL_DestroyWindow(window);
-  window = NULL;
+  window = nullptr;
+
+  SDL_DestroyRenderer(renderer);
+  renderer = nullptr;
 
   SDL_Quit();
 }
